@@ -2,7 +2,8 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Hello world](#part1)
-* [Part 2: Variables and operators](#part2)
+* [Part 2: Variables](#part2)
+* [Part 3: Bitwise operators](#part3)
 * [Challenges](#challenges)
 * [References](#references)
 
@@ -31,11 +32,17 @@
 
 ## Part 1: Hello world
 
-1. Use one of the following online C editors/compilers to test your first C code:
-   * [Online C Compiler](https://www.onlinegdb.com/online_c_compiler)
-   * [Programiz C Online Compiler](https://www.programiz.com/c-programming/online-compiler/)
-   * [OneCompiler](https://onecompiler.com/c)
-   * ...
+1. Use the [online C editor/compiler](https://www.onlinegdb.com/online_c_compiler) to test your first C code.
+
+   ```c
+   #include <stdio.h>
+
+   int main()
+   {
+       printf("Hello, world!");
+       return 0;
+   }
+   ```
 
 2. Use the `printf` function to test the following escape sequences:
 
@@ -49,104 +56,70 @@
 
    * **Backspace** (`\b`): Moves the cursor one position to the left, useful for deleting characters.
 
-   * **Escape** (`\x1b`): Initiates an escape sequence used to control text formatting, colors, and other terminal features, such as changing text color with [ANSI escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797).
-
-      > Format: `\x1b[<style>m` or `\x1b[<style>;<style>m`
-      >
-      > Common ANSI Escape Codes:
-      >   * Bold: `\x1b[1m`
-      >   * Red: `\x1b[31m`
-      >   * Green: `\x1b[32m`
-      >   * Reset (normal): `\x1b[0m`
-      >
-      > ```c
-      > // Examples
-      > printf("This is \x1b[32;1mGREEN BOLD\x1b[0m text.\n");
-      > printf("This is \x1b[31mRED\x1b[0m text.\n");
-      > ```
-
 <a name="part2"></a>
 
-## Part 2: Variables and operators
+## Part 2: Variables
 
-1. Use the standard C integer library to verify the ranges of integer data types from the Pre-Lab section. Keep in mind that the `sizeof` function returns the number of bytes used by a data type.
+1. Use the standard C integer library `stdint.h`, declare local variables and test basic arithmetic operations.
 
    ```c
-   #include <stdio.h>    // Standard C input/output library for `printf`
-   #include <stdint.h>   // Standard C integer library for `int8_t, uint8_t`
-   #include <limits.h>   // Defines ranges of integral types
+   #include <stdio.h>   // Standard C input/output library for `printf`
+   #include <stdint.h>  // Standard C integer library for `int8_t, uint8_t`
 
-   int main(void)        // Main function with no input parameters
-   {                     // Beginning of function body
-       // Definition of two local variables
-       uint8_t a = 200;
-       int8_t b = 200;   // [!] Signed 8-bit variable can not store 200
+   int main(void)       // Main function with no input parameters
+   {                    // Beginning of function body
+       uint8_t a = 10;  // Declaration of local variable
 
-       // Print formated strings to the Terminal
-       printf("int8 value is %d\n", a);  // Integer `a` will be printed instead of `%d`
-       printf("uint8 value is %d\n", b); // Formatting char. `\n` inserts a new line
+                        // Print formatted strings to the Terminal
+                        // Integer `a` will be printed instead of `%d`
+       printf("Value = %d\n", a);
 
-       printf("Size of int16_t: %ld Bytes\n", sizeof(int16_t));
-       printf("int16_t range: %d to %d\n", INT16_MIN, INT16_MAX);
+       a = a + 100;
+       printf("%d\n", a);
+
+
+       // DO SOME OTHER PROCESSING
+
 
        return 0;         // Return value of main function
    }                     // End of function body
    ```
 
-2. Write a program that calculates the factorial of a given number `n`. The factorial is the product of all positive integers from 1 to `n`. Note that you can use **if** statements and **while** loops.
+2. Write a program that calculates the factorial of a given number `n`. The factorial is the product of all positive integers from 1 to `n`. Note that you can use **if** statements and **while** or **for** loops.
 
    For example:
       * factorial of 5 should return 120 because 5! = 5 * 4 * 3 * 2 * 1 = 120.
       * factorial of 0 should return 1, as the factorial of 0 is defined to be 1.
+      * factorials of negative values are not defined.
 
    > Condition syntax:
    > ```c
-   > if (condition)
-   > {
+   > if (condition) {
    >     // Code to execute if condition is true
-   > }
-   > else
-   > {
+   > } else {
    >     // Code to execute if condition is false (optional)
    > }
    > ```
    >
    > General syntax of a while loop:
    > ```c
-   > while (condition)
-   > {
+   > while (condition) {
    >     // Code to be executed repeatedly
    > }
    > ```
-
-3. Write a program that prints a right-angled triangle made up of asterisks (`*`). The program should take one variable, which specifies the number of lines in the triangle. Each subsequent line should contain one additional asterisk, starting with one asterisk on the first line, two on the second line, and so on. 
-
-   For example, if the parameter is `5`, the output should look like this:
-
-   ```shell
-   *
-   **
-   ***
-   ****
-   *****
-   ```
-
-   You can achieve this by utilizing `for` loops and `if` statements to control the number of symbols printed on each line.
-
-   > Loop syntax and example:
+   >
+   > For loop syntax and example:
    > ```c
-   > for (initialization; condition; increment/decrement)
-   > {
+   > for (initialization; condition; increment/decrement) {
    >     // Code to be executed in each iteration
    > }
    >
-   > for (uint8_t i = 0; i < 5; i++)
-   > {
+   > for (uint8_t i = 0; i < 5; i++) {
    >     printf("*");
    > }
    > ```
 
-4. In C, you can represent and test 8-bit integers in different numeral systems: hexadecimal, decimal, and binary.
+3. In C, you can represent and test 8-bit integers in different numeral systems: hexadecimal, decimal, and binary.
 
    * Decimal: Use the standard number format (base 10).
    * Hexadecimal: Prefix the number with `0x`.
@@ -158,12 +131,12 @@
 
       int main(void)
       {
-          uint8_t hex_value = 0x1F;  // Hexadecimal value
+          uint8_t hex_value = 0x1f;  // Hexadecimal value
           uint8_t dec_value = 31;    // Decimal value
           uint8_t bin_value = 0b00011111;  // Binary value
 
-          printf("Hexadecimal: 0x%X\n", hex_value);
           printf("Decimal: %d\n", dec_value);
+          printf("Hexadecimal: 0x%x\n", hex_value);
           printf("Convert binary to decimal: %d\n", bin_value);
 
           return 0;
@@ -188,7 +161,11 @@
    > * Floating-point precision: You can control the precision of floating-point numbers, e.g., `%.2f` prints two decimal places.
    > * Hexadecimal with the minimum width of the output: `%04x` ensures that the output has at least 3 characters; if shorter, leading zeros are added to make it exactly four characters long.
 
-5. In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
+<a name="part3"></a>
+
+## Part 3: Bitwise operators
+
+In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
 
    **Common bitwise operators in C:**
    * OR (`|`): Used to **set** specific bits.
@@ -216,28 +193,23 @@
 
    ![binary operations](images/binary_operations.png)
 
-   Write a C program that demonstrates the use of bitwise operators (`&`, `|`, `^`, `~`, `<<`, `>>`) on 8-bit integer values.
+1. Write a C program that demonstrates the use of bitwise operators (`&`, `|`, `^`, `~`, `<<`, `>>`) on 8-bit integer values.
 
 <a name="challenges"></a>
 
 ## Challenges
 
-1. Write a C program that simulates a simple progress bar using ASCII characters and `printf`. The progress bar should fill up in one line from 0% to 100% using the `#` character and update in real-time.
+1. Implement a program to generate Fibonacci numbers. The Fibonacci sequence is a classic series where each number is the sum of the two preceding ones (starting with 0 and 1): 0, 1, 1, 2, 3, 5, 8, ...
 
-   Example outputs:
+2. Write a C program that simulates a simple progress bar using ASCII characters and `printf`. The progress bar should fill up in one line from 0% to 100% using the `#` character and update in real-time.
+
+   Example output:
       ```shell
+      [............................................] 0%
       [##########..................................] 20%
-      ```
-      ```shell
       [###################.........................] 40%
-      ```
-      ```shell
       [#############################...............] 60%
-      ```
-      ```shell
       [######################################......] 80%
-      ```
-      ```shell
       [############################################] 100%
       ```
 
@@ -251,7 +223,7 @@
    #include <stdio.h>
    #include <unistd.h>  // For usleep function (POSIX)
    /* Note: POSIX (Portable Operating System Interface) is an IEEE standard 
-         that ensures compatibility across different operating systems.*/
+      that ensures compatibility across different operating systems.*/
 
    int main(void)
    {
@@ -269,9 +241,23 @@
    }
    ```
 
-2. Write a program that determines whether a given number is prime and generates all prime numbers up to 1000. Note that prime numbers are natural numbers greater than 1, having only two distinct positive divisors: 1 and the number itself (e.g., 2, 3, 5, 7, 11, 13, 17, ...).
+3. Write a program that determines whether a given number is prime and generates all prime numbers up to 1000. Note that prime numbers are natural numbers greater than 1, having only two distinct positive divisors: 1 and the number itself (e.g., 2, 3, 5, 7, 11, 13, 17, ...).
 
-3. Implement a program to generate Fibonacci numbers. The Fibonacci sequence is a classic series where each number is the sum of the two preceding ones (starting with 0 and 1): 0, 1, 1, 2, 3, 5, 8, ...
+4. Use escape sequence `\x1b` to control text formatting, colors, and other terminal features, such as changing text color with [ANSI escape codes](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797).
+
+   > Format: `\x1b[<style>m` or `\x1b[<style>;<style>m`
+   >
+   > Common ANSI Escape Codes:
+   >   * Bold: `\x1b[1m`
+   >   * Red: `\x1b[31m`
+   >   * Green: `\x1b[32m`
+   >   * Reset (normal): `\x1b[0m`
+   >
+   > ```c
+   > // Examples
+   > printf("This is \x1b[32;1mGREEN BOLD\x1b[0m text.\n");
+   > printf("This is \x1b[31mRED\x1b[0m text.\n");
+   > ```
 
 <a name="references"></a>
 
@@ -280,3 +266,5 @@
 1. [OnlineGDB online compiler and debugger for c/c++](https://www.onlinegdb.com/online_c_compiler)
 
 2. Parewa Labs Pvt. Ltd. [C User-defined functions](https://www.programiz.com/c-programming/c-user-defined-functions)
+
+3. [Programiz C Online Compiler](https://www.programiz.com/c-programming/online-compiler/)
