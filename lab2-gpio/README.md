@@ -34,10 +34,10 @@
 1. Any function in C contains a declaration (function prototype) and definition (block of code, body of the function), and each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
    ```c
-   #include <avr/io.h>
+   #include <stdio.h>
 
    // Function declaration (prototype)
-   uint16_t calculate(uint8_t, ***    );
+   uint16_t calculate(uint8_t, .....);
 
    int main(void)
    {
@@ -46,23 +46,21 @@
        uint16_t c;
 
        // Function call
-       c = ***      (a, b);
+       c = ..... (a, b);
 
-       // Infinite loop
-       while (1) ;
+       printf("Result = %d\n", c)
 
-       // Will never reach this
        return 0;
    }
 
    // Function definition (body)
-   ***      calculate(uint8_t x, uint8_t y)
+   ..... calculate(uint8_t x, uint8_t y)
    {
        uint16_t result;    // result = x^2 + 2xy + y^2
 
-       result = x*x;
-       ***
-       ***
+       result = x * x;
+       .....
+       .....
        return result;
    }
    ```
@@ -122,13 +120,13 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
    ```c
    // Set bit value to 1
-   reg = reg | (1<<bit);
+   reg = reg | (1<<position);
 
    // Clear bit value to 0
-   reg = reg & ~(1<<bit);
+   reg = reg & ~(1<<position);
 
    // Toggle bit value
-   reg = reg ^ (1<<bit);
+   reg = reg ^ (1<<position);
    ```
 
    ![binary operations](images/binary_operations.png)
@@ -161,7 +159,7 @@ A header file can be shared between several source files by including it with th
 
 ```c
 #ifndef HEADER_FILE_NAME        // Preprocessor directive allows for conditional compilation. If not defined.
-# define HEADER_FILE_NAME       // Definition of constant within your source code.
+#define HEADER_FILE_NAME        // Definition of constant within your source code.
 
 // The body of entire header file
 

@@ -92,7 +92,6 @@
       * factorial of 0 should return 1, as the factorial of 0 is defined to be 1.
       * factorials of negative values are not defined.
 
-   >
    > Condition syntax:
    > ```c
    > if (condition) {
