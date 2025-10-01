@@ -89,7 +89,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 4. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files `gpio.c` and `gpio.h` from the previous lab to this folder.
 
-5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/refs/heads/master/library/timer/timer.h) to `timer.h`. See the final project structure:
+5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/refs/heads/master/library/timer/timer.h) to `timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
@@ -110,7 +110,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 6. Copy/paste the following template to `LAB3-TIMERS > src > main.c` source file and complete the code to blink the on-board LED every 262 ms using Timer1 overflow interrupt.
 
    ```c
-   // -- Includes -------------------------------------------------------
+   // -- Includes -----------------------------------------------
    #include <avr/io.h>         // AVR device-specific IO definitions
    #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
    #include <gpio.h>           // GPIO library for AVR-GCC

@@ -17,7 +17,6 @@
 * 4 resistors
 * 1 push button
 * Male to male jumper wires
-* Logic analyzer
 
 ### Learning objectives
 
@@ -77,7 +76,7 @@
 
 3. IMPORTANT: Rename `LAB2-GPIO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink/main.c) to your `LAB2-GPIO > src > main.c` file.
+4. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/examples/blink/main.c) to your `LAB2-GPIO > src > main.c` file.
 
 5. Compile and upload the firmware to ATmega328P microcontroller. Change the delay duration and observe the behavior of on-board LED. See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png):
 
@@ -183,12 +182,12 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste the [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/gpio/gpio.c) to `gpio.c`
-   2. Copy/paste the [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/gpio/gpio.h) to `gpio.h`
+   1. Copy/paste the [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/gpio/gpio.c) to `gpio.c`
+   2. Copy/paste the [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/gpio/gpio.h) to `gpio.h`
    3. Include header file to `src > main.c`:
 
       ```c
-      // -- Includes -------------------------------------------------------
+      // -- Includes ---------------------------------------------
       #include <gpio.h>       // GPIO library for AVR-GCC
       ...
 
