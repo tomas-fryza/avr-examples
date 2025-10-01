@@ -3,9 +3,9 @@
 
 /* 
  * Timer library for AVR-GCC.
- * (c) 2019-2024 Tomas Fryza, MIT license
+ * (c) 2019-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
@@ -20,16 +20,16 @@
  *
  * @note Based on Microchip Atmel ATmega328P manual and no source file
  *       is needed for the library.
- * @copyright (c) 2019-2024 Tomas Fryza, MIT license
+ * @copyright (c) 2019-2025 Tomas Fryza, MIT license
  * @{
  */
 
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 /**
  * @name  Definitions for 16-bit Timer/Counter1
  * @note  t_OVF = 1/F_CPU * prescaler * 2^n where n = 16, F_CPU = 16 MHz

@@ -1,16 +1,16 @@
 /* 
  * GPIO library for AVR-GCC.
- * (c) 2019-2024 Tomas Fryza, MIT license
+ * (c) 2019-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <gpio.h>
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: gpio_mode_output()
  * Purpose:  Configure one output pin.
