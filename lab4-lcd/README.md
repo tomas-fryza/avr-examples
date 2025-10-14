@@ -66,7 +66,7 @@ The HD44780 is capable of operating in 8-bit mode i.e. faster, but 11 microcontr
 
 In 8-bit mode we send the command/data to the LCD using eight data lines (D0-D7), while in 4-bit mode we use four data lines (D4-D7) to send commands and data. Inside the HD44780 there is still an 8-bit operation so for 4-bit mode, two writes to get 8-bit quantity inside the chip are made (first high four bits and then low four bits with an E clock pulse).
 
-In the lab, the LCD1602 display module is used. The display consists of 2 rows of 16 characters each. It has an LED back-light and it communicates through a parallel interface with only 6 wires (+ 1 signal for backglight control):
+In the lab, the LCD1602 display module is used. The display consists of 2 rows of 16 characters each. It has an LED back-light and it communicates through a parallel interface with only 6 wires (+ 1 signal for backlight control):
 
 * RS - register select. Selects the data or instruction register inside the HD44780
 * E - enable. This loads the data into the HD44780 on the falling edge
@@ -86,7 +86,8 @@ When a command is given to LCD, the command register (RS = 0) is selected and wh
 > ![Timing of LCD display](images/lcd_capture_C.png)
 >
 > **Answer:** The following signals are read on the first falling edge of the enable, therefore: `RS = 1` (data register) and higher four data bits `D7:4 = 0100`. On the second falling edge of enable, the lower four data bits are `D7:4 = 0011`. The whole byte transmitted to the LCD is therefore `0100_0011` (0x43) and according to the ASCII (American Standard Code for Information Interchange) table, it represents letter `C`.
->
+
+<!--
 > The Hitachi HD44780 has many commands, the most useful for initialization, xy location settings, and print [[1]](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf).
 >
 > If you are an advanced programmer and would like to create your own library for interfacing your microcontroller with an LCD module then you have to understand those instructions and commands which can be found its datasheet.
@@ -94,6 +95,7 @@ When a command is given to LCD, the command register (RS = 0) is selected and wh
 ![HD44780 instruction set](images/hd44780_instructions_part1.png)
 
 ![HD44780 instruction set](images/hd44780_instructions_part2.png)
+-->
 
 <a name="part2"></a>
 
@@ -172,7 +174,7 @@ CGRAM is another memory that can be used for storing user defined characters. Th
 
 A custom character is an array of 8 bytes. Each byte (only 5 bits are considered) in the array defines one row of the character in the 5x8 matrix. Whereas, the zeros and ones in the byte indicate which pixels in the row should be on and which ones should be off.
 
-Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and generate two 5 by 8 custom characters. Use the foíllowing structure to display them on the sceen.
+Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and generate two 5 by 8 custom characters. Use the following structure to display them on the screen.
 
    ```c
    ...
@@ -203,11 +205,11 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    **IMPORTANT:** Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
 
    ```c
-   // -- Includes -------------------------------------------------------
+   // -- Includes ---------------------------------------------
    #include <stdlib.h>         // C library. Needed for number conversions
    ...
 
-   // -- Global variables -----------------------------------------------
+   // -- Global variables -------------------------------------
    volatile uint8_t flag_update_lcd = 0;
 
    // Stopwatch values
@@ -219,7 +221,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
        uint8_t mins;    // Minutes
    } stopwatch;
 
-   // -- Function definitions -------------------------------------------
+   // -- Function definitions ---------------------------------
    int main(void)
    {
        char lcd_msg[5];  // String for converted numbers by itoa()
@@ -241,7 +243,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
        ...
    }
 
-   // -- Interrupt service routines -------------------------------------
+   // -- Interrupt service routines ---------------------------
    ISR(TIMER2_OVF_vect)
    {
        ...
