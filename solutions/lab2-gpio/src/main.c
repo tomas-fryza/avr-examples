@@ -1,25 +1,25 @@
 /*
  * Blink a LED using GPIO library and delay.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 #define LED_BUILTIN PB5  // On-board LED
 #define LED_EXT PB0      // External LED
 #define BTN PD2
 #define SHORT_DELAY 250  // Delay in milliseconds
 
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>      // AVR device-specific IO definitions
 #include <util/delay.h>  // Functions for busy-wait delay loops
 #include <gpio.h>        // GPIO library for AVR-GCC
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Toggle LED(s) using delay.

@@ -1,31 +1,26 @@
-/***********************************************************************
- * 
+/*
  * Seven-segment display library for AVR-GCC.
- * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * (c) 2019-2025 Tomas Fryza, MIT license
  *
- * Copyright (c) 2019 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
- *
- **********************************************************************/
+ * Developed using PlatformIO and Atmel AVR platform.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
+ */
 
-
-/* Includes ----------------------------------------------------------*/
+// -- Includes ---------------------------------------------
 #ifndef F_CPU
-# define F_CPU 16000000
+#define F_CPU 16000000
 #endif
 #include <util/delay.h>
 #include "gpio.h"
 #include "segment.h"
 
 
-/* Function definitions ----------------------------------------------*/
-/**********************************************************************
+// -- Function definitions ---------------------------------
+/*
  * Function: seg_init()
  * Purpose:  Configure SSD signals LATCH, CLK, and DATA as output.
  * Returns:  none
- **********************************************************************/
+ */
 void seg_init(void)
 {
     /* Configuration of SSD signals */
@@ -35,14 +30,14 @@ void seg_init(void)
 }
 
 
-/**********************************************************************
+/*
  * Function: seg_update_shift_regs()
  * Purpose:  Display segments at one position of the SSD.
  * Input:    segments - Segments to be displayed (abcdefgDP, active low)
  *           position - Position of the display where the segments are to 
  *                      be displayed (p3 p2 p1 p0 xxxx, active high)
  * Returns:  none
- **********************************************************************/
+ */
 void seg_update_shift_regs(uint8_t segments, uint8_t position)
 {
     uint8_t bit_number;
@@ -96,11 +91,11 @@ void seg_update_shift_regs(uint8_t segments, uint8_t position)
 }
 
 
-/**********************************************************************
+/*
  * Function: seg_clear()
- **********************************************************************/
+ */
 
 
-/**********************************************************************
+/*
  * Function: seg_clk_2us()
- **********************************************************************/
+ */

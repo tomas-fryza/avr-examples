@@ -5,7 +5,7 @@
  * GPIO library for AVR-GCC.
  * (c) 2019-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and Atmel ACVR platform.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 

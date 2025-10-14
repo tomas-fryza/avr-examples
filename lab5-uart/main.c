@@ -1,12 +1,12 @@
 /*
  * Use USART unit and transmit data between ATmega328P and computer.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -14,7 +14,7 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Use Timer/Counter1 and transmit UART data.
@@ -47,7 +47,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Transmit UART data.

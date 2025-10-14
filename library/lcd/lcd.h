@@ -1,5 +1,5 @@
 #ifndef LCD_H
-# define LCD_H
+#define LCD_H
 
 /*************************************************************************
  * Title	:   C include file for the HD44780U LCD library (lcd.c)

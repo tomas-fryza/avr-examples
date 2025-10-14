@@ -1,17 +1,13 @@
 #ifndef SEGMENT_H
-# define SEGMENT_H
+#define SEGMENT_H
 
-/***********************************************************************
- * 
+/*
  * Seven-segment display library for AVR-GCC.
+ * (c) 2019-2025 Tomas Fryza, MIT license
  * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
- *
- * Copyright (c) 2019 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
- *
- **********************************************************************/
+ * Developed using PlatformIO and Atmel AVR platform.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
+ */
 
 /**
  * @file 
@@ -23,19 +19,16 @@
  * The library contains functions for controlling the seven-segment 
  * display (SSD) using two shift registers 74HC595.
  *
- * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
- *         of Technology, Czechia
- * @copyright (c) 2019 Tomas Fryza, This work is licensed under 
- *                the terms of the MIT license
+ * @copyright (c) 2019-2025 Tomas Fryza, MIT license
  * @{
  */
 
 
-/* Includes ----------------------------------------------------------*/
+// -- Includes ---------------------------------------------
 #include <avr/io.h>
 
 
-/* Defines -----------------------------------------------------------*/
+// -- Defines ----------------------------------------------
 /**
  * @name  Definition of SSD interface
  * @note  Connection is based on Multi-function shield.
@@ -45,7 +38,7 @@
 #define SEG_DATA    PB0
 
 
-/* Function prototypes -----------------------------------------------*/
+// --- Function prototypes ----------------------------------
 /**
  * @brief  Configure SSD signals LATCH, CLK, and DATA as output.
  * @return none

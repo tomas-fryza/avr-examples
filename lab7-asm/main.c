@@ -1,9 +1,9 @@
 /*
  * Implementation of LFSR-based (Linear Feedback Shift Register) 
  * pseudo-random generator in AVR assembly.
- * (c) 2017-2024 Tomas Fryza, MIT license
+ * (c) 2017-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  * 
  * NOTE:
@@ -20,7 +20,7 @@
  *   https://five-embeddev.com/baremetal/platformio/
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -29,7 +29,7 @@
 #include <stdio.h>          // C library for `sprintf`
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Generate a new pseudo-random value using 4- and/or 8-bit
@@ -57,7 +57,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Generate one pseudo-random value using 4- and/or 8-bit

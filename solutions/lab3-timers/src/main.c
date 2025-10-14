@@ -1,24 +1,24 @@
 /* 
  * Blink a LED using Timer interrupts.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <gpio.h>           // GPIO library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 #define LED_BUILTIN PB5  // On-board LED
 #define LED_EXT PB0      // External LED
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Toggle LEDs using 8- and 16-bit Timers.
@@ -53,7 +53,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Toggle on-board LED.

@@ -1,5 +1,5 @@
 #ifndef TIMER_H
-# define TIMER_H
+#define TIMER_H
 
 /* 
  * Timer library for AVR-GCC.

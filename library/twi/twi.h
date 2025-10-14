@@ -1,11 +1,11 @@
 #ifndef TWI_H
-# define TWI_H
+#define TWI_H
 
 /*
  * I2C/TWI library for AVR-GCC.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
@@ -20,20 +20,20 @@
  * AVR and Slave device(s). Functions use internal TWI module of AVR.
  *
  * @note Only Master transmitting and Master receiving modes are implemented. Based on Microchip Atmel ATmega16 and ATmega328P manuals.
- * @copyright (c) 2018-2024 Tomas Fryza, MIT license
+ * @copyright (c) 2018-2025 Tomas Fryza, MIT license
  * @{
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
  #include <avr/io.h>
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 /**
  * @name Definition of frequencies 
  */
 #ifndef F_CPU
-# define F_CPU 16000000 /**< @brief CPU frequency in Hz required TWI_BIT_RATE_REG */
+#define F_CPU 16000000 /**< @brief CPU frequency in Hz required TWI_BIT_RATE_REG */
 #endif
 #define F_SCL 100000 /**< @brief I2C/TWI bit rate. Must be greater than 31000 */
 #define TWI_BIT_RATE_REG ((F_CPU/F_SCL - 16) / 2) /**< @brief TWI bit rate register value */
@@ -58,7 +58,7 @@
 #define PIN(_x) (*(&_x - 2)) /**< @brief Address of input register of port _x */
 
 
-// -- Function prototypes --------------------------------------------
+// -- Function prototypes ----------------------------------
 /**
  * @brief  Initialize TWI unit, enable internal pull-ups, and set SCL frequency.
  * @par    Implementation notes:

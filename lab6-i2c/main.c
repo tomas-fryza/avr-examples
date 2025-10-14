@@ -1,13 +1,13 @@
 /*
  * The I2C (TWI) bus scanner tests all addresses and detects devices
  * that are connected to the SDA and SCL signals.
- * (c) 2023-2024 Tomas Fryza, MIT license
+ * (c) 2023-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <twi.h>            // I2C/TWI library for AVR-GCC
@@ -15,7 +15,7 @@
 #include <stdio.h>          // C library. Needed for `sprintf`
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Call function to test all I2C (TWI) combinations and send

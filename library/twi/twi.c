@@ -1,16 +1,16 @@
 /*
  * I2C/TWI library for AVR-GCC.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <twi.h>
 
 
-// -- Functions ------------------------------------------------------
+// -- Functions --------------------------------------------
 /*
  * Function: twi_init()
  * Purpose:  Initialize TWI unit, enable internal pull-ups, and set SCL

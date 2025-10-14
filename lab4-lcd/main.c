@@ -1,12 +1,12 @@
 /* 
  * Stopwatch on Liquid Crystal Display (LCD).
- * (c) 2017-2024 Tomas Fryza, MIT license
+ * (c) 2017-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <gpio.h>           // GPIO library for AVR-GCC
@@ -15,7 +15,7 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
-// -- Global variables -----------------------------------------------
+// -- Global variables -------------------------------------
 volatile uint8_t flag_update_lcd = 0;
 
 // Stopwatch values
@@ -28,7 +28,7 @@ struct Stopwatch_structure
 } stopwatch;
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Update stopwatch value on LCD screen when 8-bit Timer/Counter2
@@ -82,7 +82,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter2 overflow interrupt
  * Purpose:  Update the stopwatch on LCD screen every sixth overflow,
