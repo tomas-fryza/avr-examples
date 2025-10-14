@@ -75,7 +75,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 3. IMPORTANT: Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab5-uart/main.c) to `LAB5-UART > src > main.c` source file.
+4. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab5-uart/main.c) to `LAB5-UART > src > main.c` source file.
 
 5. Copy the `timer.h` header file from the previous labs to `LCD5-UART > include` folder.
 
@@ -95,8 +95,8 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart/uart.c) to `uart.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart/uart.h) to `uart.h`
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.c) to `uart.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.h) to `uart.h`
 
 7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`? Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
 
@@ -293,7 +293,7 @@ In this part, you will establish communication between a PC and an Arduino board
    * `AT+CWLAPOPT=1,6` - Limit the list to `rssi` and `ssid` parameters only
    * `AT+CWLAP` - List `ssid` and `rssi` parameters of available Wi-Fi APs (takes few seconds)
 
-   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/avr-course/blob/master/docs/esp8266_at_instruction_set.pdf) or [here](https://digilent.com/reference/pmod/pmodesp32/reference-manual). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
+   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/avr-labs/blob/master/docs/esp8266_at_instruction_set.pdf) or [here](https://digilent.com/reference/pmod/pmodesp32/reference-manual). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
 
 3. Draw a timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 

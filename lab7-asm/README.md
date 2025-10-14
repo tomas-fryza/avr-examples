@@ -58,7 +58,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
 2. IMPORTANT: Rename `LAB7-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab7-asm/main.c) to `LAB7-ASM > src > main.c` source file.
+3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab7-asm/main.c) to `LAB7-ASM > src > main.c` source file.
 
 4. Copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB7-ASM` project.
 
@@ -81,8 +81,8 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste assembly [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lfsr/lfsr.h) to `lfsr.h`
-   2. Copy/paste assembly [source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lfsr/lfsr.S) to `lfsr.S`
+   1. Copy/paste assembly [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lfsr/lfsr.h) to `lfsr.h`
+   2. Copy/paste assembly [source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lfsr/lfsr.S) to `lfsr.S`
 
 6. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/) and find the description of following instructions.
 
@@ -163,10 +163,10 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 ```
 
 1. Open Doxywizard and set the basic settings as follows:
-   1. Select working directory with your project `Documents\avr-course\lab7-asm`
+   1. Select working directory with your project `Documents\avr-labs\lab7-asm`
    2. In **Wizard > Project** set **Project name**
    3. In **Wizard > Project** check **Scan recursively**
-   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\avr-course\lab7-asm\doxygen`
+   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\avr-labs\lab7-asm\doxygen`
    5. In **Wizard > Mode** select programming language to **Optimized for C or PHP output**
    6. In **Wizard > Output > HTML** unselect **With search function**
    7. In **Wizard > Output** unselect LaTeX and keep just HTML generation

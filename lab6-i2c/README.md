@@ -67,7 +67,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf), this is the memory address, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/avr-labs/blob/master/docs/dht12_manual.pdf), this is the memory address, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
 >
 > | **Memory location** | **Description** |
 > | :-: | :-- |
@@ -99,7 +99,7 @@ The goal of this task is to create a program that will verify the presence of de
 
 2. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab6-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
+3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab6-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
 
 4. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
 
@@ -122,8 +122,8 @@ The goal of this task is to create a program that will verify the presence of de
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/twi/twi.c) to `twi.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/twi/twi.h) to `twi.h`
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.c) to `twi.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.h) to `twi.h`
 
 6. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the `twi.h` header file and complete the following table by input parameters and functions descriptions.
 
@@ -145,13 +145,13 @@ The goal of this task is to create a program that will verify the presence of de
 
    ![Arduino_uno_pinout](../lab2-gpio/images/arduino_uno-pinout.png)
 
-   * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf) digital sensor
+   * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-labs/blob/master/docs/dht12_manual.pdf) digital sensor
 
    * SH1106 I2C [OLED display](https://randomnerdtutorials.com/esp32-ssd1306-oled-display-arduino-ide/) 128x64
 
-   * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/avr-course/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/avr-course/blob/master/docs/at24c32_manual.pdf) EEPROM memory
+   * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/avr-labs/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/avr-labs/blob/master/docs/at24c32_manual.pdf) EEPROM memory
 
-   * Optional: [GY-521 module](https://github.com/tomas-fryza/avr-course/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
+   * Optional: [GY-521 module](https://github.com/tomas-fryza/avr-labs/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
 
 8. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate in `main.c` is set to 115200, therefore you need to add a line to your `platformio.ini` config file to make sure the Serial Monitor is using the same. Open the Serial Monitor in PlatformIO after the Upload.
 
@@ -180,22 +180,22 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    Note that a structured variable in C can be used for received values.
 
    ```c
-   // -- Includes -------------------------------------------------------
+   // -- Includes ---------------------------------------------
    #include "timer.h"
    ...
 
-   // -- Defines --------------------------------------------------------
+   // -- Defines ----------------------------------------------
    #define DHT_ADR 0x5c
    #define DHT_HUM_MEM 0
    #define DHT_TEMP_MEM 2
 
 
-   // -- Global variables -----------------------------------------------
+   // -- Global variables -------------------------------------
    volatile uint8_t flag_update_uart = 0;
    volatile uint8_t dht12_values[5];
 
 
-   // -- Function definitions -------------------------------------------
+   // -- Function definitions ---------------------------------
    /*
     * Function: Main function where the program execution begins
     * Purpose:  Wait for new data from the sensor and sent them to UART.
@@ -240,7 +240,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    }
 
 
-   // -- Interrupt service routines -------------------------------------
+   // -- Interrupt service routines ---------------------------
    /*
     * Function: Timer/Counter1 overflow interrupt
     * Purpose:  Read data from DHT12 sensor, SLA = 0x5c.
@@ -275,11 +275,11 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
-   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled/font.h)
-   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled/oled.c)
-   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled/oled.h)
+   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/font.h)
+   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/oled.c)
+   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/oled.h)
 
-   Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/solutions/lab6-i2c-oled/src/main.c).
+   Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/solutions/lab6-i2c-oled/src/main.c).
 
    The final project structure should look like this:
 
@@ -324,7 +324,7 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 4. Draw a timing diagram of I2C signals when calling function `rtc_read_years()`. Let this function reads one byte-value from RTC DS3231 address `06h` (see RTC datasheet) in the range `00` to `99`. Specify when the SDA line is controlled by the Master device and when by the Slave device. Draw the whole request/receive process, from Start to Stop condition. The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 
-5. Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/avr-course/blob/master/docs/mpu-6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
+5. Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/avr-labs/blob/master/docs/mpu-6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
 
 6. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 

@@ -142,11 +142,11 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd/lcd_definitions.h) to `lcd_definitions.h`
-   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd/lcd.c) to `lcd.c`
-   3. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd/lcd.h) to `lcd.h`
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd_definitions.h) to `lcd_definitions.h`
+   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd.c) to `lcd.c`
+   3. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd.h) to `lcd.h`
 
-7. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab4-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
+7. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab4-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
 
 8. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 
