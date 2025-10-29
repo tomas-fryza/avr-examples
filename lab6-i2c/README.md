@@ -12,9 +12,9 @@
 
 * Arduino Uno board, USB cable
 * Breadboard
+* RTC DS3231 and AT24C32 EEPROM memory module
+* OLED display
 * DHT12 humidity/temperature sensor
-  * Optional: RTC DS3231 and AT24C32 EEPROM memory module
-  * Optional: GY-521 module with MPU-6050 microelectromechanical systems
 * Logic analyzer
 * Jumper wires
 
@@ -85,9 +85,9 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > | **Frame #** | **Description** |
 > | :-: | :-- |
-> | 1 | Address frame with SLA+W = 184 (0x5c<<1 + 0) |
+> | 1 | Address frame with SLA+W = 184 (0x5c<<1 | 0) |
 > | 2 | Data frame sent to the Slave represents the ID of internal memory location |
-> | 3 | Address frame with SLA+R = 185 (0x5c<<1 + 1) |
+> | 3 | Address frame with SLA+R = 185 (0x5c<<1 | 1) |
 > | 4 | Data frame with integer part of temperature read from Slave |
 > | 5 | Data frame with decimal part of temperature read from Slave |
 
@@ -97,49 +97,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 The goal of this task is to create a program that will verify the presence of devices connected to the I2C bus by sequentially trying all address combinations.
 
-1. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local folder.
-
-2. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab6-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
-
-4. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
-
-5. In PlatformIO project, create a new folder `LAB6-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`. The final project structure should look like this:
-
-   ```c
-   LAB6-I2C            // PlatfomIO project
-   ├── include         // Included file(s)
-   │   └── timer.h
-   ├── lib             // Libraries
-   │   ├── twi         // Tomas Fryza's TWI/I2C library
-   │   │   ├── twi.c
-   │   │   └── twi.h
-   │   └── uart        // Peter Fleury's UART library
-   │       ├── uart.c
-   │       └── uart.h
-   ├── src             // Source file(s)
-   │   └── main.c
-   ├── test            // No need this
-   └── platformio.ini  // Project Configuration File
-   ```
-
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.c) to `twi.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.h) to `twi.h`
-
-6. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the `twi.h` header file and complete the following table by input parameters and functions descriptions.
-
-   | **Function name** | **Function parameters** | **Description** | **Example** |
-   | :-- | :-- | :-- | :-- |
-   | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
-   | `twi_start` |  | <br>&nbsp; |  |
-   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) \| TWI_WRITE);` |
-   | `twi_read` | <br>&nbsp; |  |  |
-   | `twi_stop` |  |  | `twi_stop();` |
-   | `twi_test_address` | `sla` Slave address | Test presence of one I2C device on the bus. | `twi_test_address(0x3c);` |
-   | `twi_readfrom_mem_into` | | | |
-
-7. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
+1. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board.
 
    > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones are used.
 
@@ -151,48 +109,78 @@ The goal of this task is to create a program that will verify the presence of de
 
    ![schema_serials](images/schema-serials.png)
 
-8. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate in `main.c` is set to 115200, therefore you need to add a line to your `platformio.ini` config file to make sure the Serial Monitor is using the same. Open the Serial Monitor in PlatformIO after the Upload.
+2. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local folder.
+
+   1. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+
+   2. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
+
+   3. In PlatformIO project, create a new folder `LAB6-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`. The final project structure should look like this:
+
+      ```c
+      LAB6-I2C            // PlatfomIO project
+      ├── include         // Included file(s)
+      │   └── timer.h
+      ├── lib             // Libraries
+      │   ├── twi         // Tomas Fryza's TWI/I2C library
+      │   │   ├── twi.c
+      │   │   └── twi.h
+      │   └── uart        // Peter Fleury's UART library
+      │       ├── uart.c
+      │       └── uart.h
+      ├── src             // Source file(s)
+      │   └── main.c
+      ├── test            // No need this
+      └── platformio.ini  // Project Configuration File
+      ```
+
+   4. Copy/paste the following files:
+   
+      * [main.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab6-i2c/main.c)
+      * [twi.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.c)
+      * [twi.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.h)
+
+3. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the `twi.h` header file and complete the following table by input parameters and functions descriptions.
+
+   | **Function name** | **Function parameters** | **Description** | **Example** |
+   | :-- | :-- | :-- | :-- |
+   | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
+   | `twi_start` |  | <br>&nbsp; |  |
+   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) \| TWI_WRITE);` |
+   | `twi_read` | <br>&nbsp; |  |  |
+   | `twi_stop` |  |  | `twi_stop();` |
+   | `twi_test_address` | `sla` Slave address | Test presence of one I2C device on the bus. | `twi_test_address(0x3c);` |
+   | `twi_readfrom_mem_into` | | | |
+
+4. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate in `main.c` is set to 115200, therefore you need to add a line to your `platformio.ini` config file to make sure the Serial Monitor is using the same. Open the Serial Monitor in PlatformIO after the Upload.
 
    ```shell
    monitor_speed = 115200
    ```
 
-9. Connect the logic analyzer to the I2C and Tx wires. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers: **I2C** and **Async Serial**.
-
-   ![schema_saleae](images/schema-saleae.png)
-
 <a name="part3"></a>
 
 ## Part 3: Communication with I2C devices
 
-The goal of this task is to communicate with the DHT12 temperature and humidity sensor assigned to the I2C slave address `0x5c`.
+The goal of this task is to communicate with the RTC assigned to the I2C slave address `0x68`.
 
-1. Program an application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DHT12 manual](../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
+1. Program an application which reads data from RTC DS3231 chip and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DS3231 manual](../docs/ds3231_manual.pdf), the internal RTC memory have the following structure.
 
-   | **Memory location** | **Description** |
-   | :-: | :-- |
-   | 0x00 | Humidity integer part |
-   | 0x01 | Humidity decimal part |
-   | 0x02 | Temperature integer part |
-   | 0x03 | Temperature decimal part |
-   | 0x04 | Checksum |
-
-   Note that a structured variable in C can be used for received values.
+   | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
+   | :-: | :-: | :-: | :-: |
+   | 0x00 | 0 | 10 Seconds | Seconds |
+   | 0x01 | 0 | 10 Minutes | Minutes |
+   | 0x02 | 0 | 12/24 AM/PM 10 Hour | Hour |
+   | ... | ... | ... | ... |
 
    ```c
-   // -- Includes ---------------------------------------------
-   #include "timer.h"
-   ...
-
    // -- Defines ----------------------------------------------
-   #define DHT_ADR 0x5c
-   #define DHT_HUM_MEM 0
-   #define DHT_TEMP_MEM 2
+   #define RTC_ADR 0x68
 
 
    // -- Global variables -------------------------------------
    volatile uint8_t flag_update_uart = 0;
-   volatile uint8_t dht12_values[5];
+   volatile uint8_t rtc_values[3];
 
 
    // -- Function definitions ---------------------------------
@@ -203,31 +191,19 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
     */
    int main(void)
    {
-       char uart_msg[10];
+       ...
 
-       twi_init();
-       uart_init(UART_BAUD_SELECT(115200, F_CPU));
-
-       sei();  // Needed for UART
-
-       // Test if sensor is ready
-       if (twi_test_address(DHT_ADR) != 0)
-       {
+       // Optional test if sensor is ready
+       if (twi_test_address(DHT_ADR) != 0) {
            uart_puts("[\x1b[31;1mERROR\x1b[0m] I2C device not detected\r\n");
-           while (1);
+           while (1);  // Cycle here forever
        }
 
-       // Timer1
-       tim1_ovf_1sec();
-       tim1_ovf_enable();
-
-       // Infinite loop
-       while (1)
-       {
-           if (flag_update_uart == 1)
-           {
-               // Display temperature
-               sprintf(uart_msg, "%u.%u °C\r\n", dht12_values[0], dht12_values[1]);
+       ...
+       while (1) {
+           if (flag_update_uart == 1) {
+               // Display time from RTC
+               sprintf(uart_msg, "%x  \r", rtc_values[0]);
                uart_puts(uart_msg);
 
                // Do not print it again and wait for the new data
@@ -235,7 +211,6 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
            }
        }
 
-       // Will never reach this
        return 0;
    }
 
@@ -243,27 +218,22 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    // -- Interrupt service routines ---------------------------
    /*
     * Function: Timer/Counter1 overflow interrupt
-    * Purpose:  Read data from DHT12 sensor, SLA = 0x5c.
+    * Purpose:  Read data from RTC.
     */
    ISR(TIMER1_OVF_vect)
    {
-       twi_readfrom_mem_into(DHT_ADR, DHT_TEMP_MEM, dht12_values, 2);
+       twi_readfrom_mem_into(RTC_ADR, 0, rtc_values, 1);
        flag_update_uart = 1;
    }
    ```
 
-2. Modify the code and read values from all DHT12 memory locations every 5 seconds, print them to UART, and verify the checksum byte.
+2. Modify the code, read 3 bytes from RTC device, and display them via UART in the form of `hours:minutes.seconds`.
 
-   > **Alternation:** Program an application which reads data from RTC DS3231 chip and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DS3231 manual](../docs/ds3231_manual.pdf), the internal RTC memory have the following structure.
-   >
-   > | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
-   > | :-: | :-: | :-: | :-: |
-   > | 0x00 | 0 | 10 Seconds | Seconds |
-   > | 0x01 | 0 | 10 Minutes | Minutes |
-   > | 0x02 | 0 | 12/24 AM/PM 10 Hour | Hour |
-   > | ... | ... | ... | ... |
+3. Connect the logic analyzer to the I2C and Tx wires. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers for **I2C** and **Async**.
 
-3. Verify the I2C communication with logic analyzer.
+   ![schema_saleae](images/schema-saleae.png)
+
+4. Modify the existing embedded program so that, during system initialization, the current time is written to the RTC device once.
 
 <a name="part4"></a>
 
@@ -271,38 +241,47 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
 
 An OLED I2C display, or OLED I2C screen, is a type of display technology that combines an OLED (Organic Light Emitting Diode) panel with an I2C (Inter-Integrated Circuit) interface for communication. The I2C interface simplifies the connection between the display and a microcontroller, making it easier to control and integrate into various electronic projects.
 
-1. Create a new PlatformIO project `lab6-i2c-oled`, copy `twi` library to `lib/twi` folder, and create a new library `lib/oled` with the following files.
-
-   > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
+1. In the current project, create a new library `lib/oled` with the following files:
 
    * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/font.h)
    * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/oled.c)
    * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/oled.h)
 
-   Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/solutions/lab6-i2c-oled/src/main.c).
+   > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
-   The final project structure should look like this:
+2. Add the following code and test the display.
 
    ```c
-   LAB6-I2C-OLED       // PlatfomIO project
-   ├── include
-   ├── lib             // Libraries
-   │   ├── oled        // Sylaina's OLED library
-   │   │   ├── font.h
-   │   │   ├── oled.c
-   │   │   └── oled.h
-   │   └── twi         // Tomas Fryza's TWI/I2C library
-   │       ├── twi.c
-   │       └── twi.h
-   ├── src             // Source file(s)
-   │   └── main.c
-   ├── test            // No need this
-   └── platformio.ini  // Project Configuration File
+   #include <oled.h>
+   ...
+
+   int main(void)
+   {
+       ...
+       oled_init(OLED_DISP_ON);
+       oled_clrscr();
+
+       oled_charMode(DOUBLESIZE);
+       oled_puts("OLED disp.");
+       oled_charMode(NORMALSIZE);
+
+       oled_gotoxy(0, 2);
+       oled_puts("128x64, SH1106");
+
+       // oled_drawLine(x1, y1, x2, y2, color)
+       oled_drawLine(0, 25, 120, 25, WHITE);
+       oled_gotoxy(0, 4);
+       oled_puts("AVR course, Brno");
+
+       // Copy buffer to display RAM
+       oled_display();
+       ...
+   }
    ```
 
-2. Compile the project and upload it to MCU. Use other functions from `oled.h` library and draw lines and rectangles on the display.
+3. Use other functions from `oled.h` library and draw lines, rectangles, circles on the display.
 
-3. Combine temperature and OLED examples and print DHT12 sensor values on OLED display.
+4. Combine the RTC and OLED example codes, and display the current time from the RTC on the OLED screen as well.
 
 <a name="challenges"></a>
 
@@ -318,9 +297,9 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 2. Program the functions that will be able to save the current time values to the RTC DS3231.
 
-3. Consider an application for temperature and humidity measurements. Use sensor DHT12, real time clock DS3231, LCD, and one LED. Every minute, the temperature, humidity, and time is requested from Slave devices and values are displayed on LCD screen. When the temperature is above the threshold, turn on the LED.
+3. Consider an application for temperature and humidity measurements. Use sensor DHT12, real time clock DS3231, OLED, and one LED. Every minute, the temperature, humidity, and time is requested from Slave devices and values are displayed on OLED screen. When the temperature is above the threshold, turn on the LED.
 
-   Draw a flowchart of `TIMER1_OVF_vect` (which overflows every 1&nbsp;sec) for such Meteo station. The image can be drawn on a computer or by hand. Use clear description of individual algorithm steps.
+   Draw a flowchart of `TIMER1_OVF_vect` (which overflows every 1&nbsp;sec) for such Meteo station. Use clear description of individual algorithm steps.
 
 4. Draw a timing diagram of I2C signals when calling function `rtc_read_years()`. Let this function reads one byte-value from RTC DS3231 address `06h` (see RTC datasheet) in the range `00` to `99`. Specify when the SDA line is controlled by the Master device and when by the Slave device. Draw the whole request/receive process, from Start to Stop condition. The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 
