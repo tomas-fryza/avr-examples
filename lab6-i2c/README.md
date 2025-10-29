@@ -24,6 +24,8 @@
 * Use functions from I2C library
 * Perform data transfers between MCU and I2C devices
 
+   ![I2C bus](images/photo_oled-sensor.jpg)
+
 <a name="preparation"></a>
 
 ## Pre-Lab preparation
@@ -139,19 +141,15 @@ The goal of this task is to create a program that will verify the presence of de
 
 7. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
 
-   ![I2C bus](images/photo_oled-sensor.jpg)
-
    > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones are used.
-
-   ![Arduino_uno_pinout](../lab2-gpio/images/arduino_uno-pinout.png)
-
-   * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-labs/blob/master/docs/dht12_manual.pdf) digital sensor
 
    * SH1106 I2C [OLED display](https://randomnerdtutorials.com/esp32-ssd1306-oled-display-arduino-ide/) 128x64
 
-   * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/avr-labs/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/avr-labs/blob/master/docs/at24c32_manual.pdf) EEPROM memory
+   * Combined module with [RTC DS3231](https://github.com/tomas-fryza/avr-labs/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/avr-labs/blob/master/docs/at24c32_manual.pdf) EEPROM memory
 
-   * Optional: [GY-521 module](https://github.com/tomas-fryza/avr-labs/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
+   * Optional: Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-labs/blob/master/docs/dht12_manual.pdf) digital sensor
+
+   ![schema_serials](images/schema-serials.png)
 
 8. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate in `main.c` is set to 115200, therefore you need to add a line to your `platformio.ini` config file to make sure the Serial Monitor is using the same. Open the Serial Monitor in PlatformIO after the Upload.
 
@@ -160,6 +158,8 @@ The goal of this task is to create a program that will verify the presence of de
    ```
 
 9. Connect the logic analyzer to the I2C and Tx wires. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers: **I2C** and **Async Serial**.
+
+   ![schema_saleae](images/schema-saleae.png)
 
 <a name="part3"></a>
 
