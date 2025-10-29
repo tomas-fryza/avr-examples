@@ -113,7 +113,7 @@ The goal of this task is to create a program that will verify the presence of de
 
    1. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-   2. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
+   2. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-I2C` project.
 
    3. In PlatformIO project, create a new folder `LAB6-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`. The final project structure should look like this:
 
@@ -247,7 +247,7 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
    * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/oled.c)
    * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/oled/oled.h)
 
-   > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
+   > **Note:** The library for OLED displays with SSD1306 or SH1106 controller was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
 2. Add the following code and test the display.
 
