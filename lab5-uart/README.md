@@ -73,32 +73,33 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 2. In Visual Studio Code create a new PlatformIO project `lab5-uart` for `Arduino Uno` board and change project location to your local folder.
 
-3. IMPORTANT: Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+   1. Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab5-uart/main.c) to `LAB5-UART > src > main.c` source file.
+   2. Copy the `timer.h` header file from the previous labs to `LCD5-UART > include` folder.
 
-5. Copy the `timer.h` header file from the previous labs to `LCD5-UART > include` folder.
+   3. In PlatformIO project, create a new folder `LAB5-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`. The final project structure should look like this:
 
-6. In PlatformIO project, create a new folder `LAB5-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`. The final project structure should look like this:
+      ```c
+      LAB5-UART           // PlatfomIO project
+      ├── include         // Included file(s)
+      │   └── timer.h
+      ├── lib             // Libraries
+      │   └── uart        // Peter Fleury's UART library
+      │       ├── uart.c
+      │       └── uart.h
+      ├── src             // Source file(s)
+      │   └── main.c
+      ├── test            // No need this
+      └── platformio.ini  // Project Configuration File
+      ```
 
-   ```c
-   LAB5-UART           // PlatfomIO project
-   ├── include         // Included file(s)
-   │   └── timer.h
-   ├── lib             // Libraries
-   │   └── uart        // Peter Fleury's UART library
-   │       ├── uart.c
-   │       └── uart.h
-   ├── src             // Source file(s)
-   │   └── main.c
-   ├── test            // No need this
-   └── platformio.ini  // Project Configuration File
-   ```
+   4. Copy/paste the following files:
+   
+      * [main.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab5-uart/main.c)
+      * [uart.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.c)
+      * [uart.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.h)
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.c) to `uart.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.h) to `uart.h`
-
-7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`? Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
+3. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`? Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
 
 <!--   
    > In PuTTY, set connection type to `Serial` and check that configuration is the same as in the ATmega328P application, ie. 9600 8N1 mode. Note that, **serial line** (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
@@ -110,11 +111,12 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 -->
-8. Configure Timer1 to overflow once per second and transmit UART string `Paris`.
 
-9. Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
+4. Configure Timer1 to overflow once per second and transmit UART string `Paris`.
 
-   ![logic analyzer-photo](images/logic_photo.jpg)
+5. Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
+
+   ![schema-saleae](images/schema-saleae-tx.png)
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
