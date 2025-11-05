@@ -1,189 +1,97 @@
-# C project
+# Student team project guidelines: C-code projects 2025/26
 
-## Instructions
+## Overview
 
-*The goal of this project is for small teams of 3-4 students to explore a chosen topic, use the [labs's components](https://github.com/tomas-fryza/avr-course/blob/master/README.md#components), develop solutions, simulate and implement them, create documentation, and present the results. Team members will organize and divide tasks among themselves.*
+Student teams (3-4 students) will design and develop an ATmega328-based system to address a selected problem or application area. The project will be completed in three phases: **Design**, **Build**, and **Demonstration**.
 
-   ![components](images/components.jpg)
+* Students solve the project in the laboratory according to the course schedule.
 
-* The students will work on the project for five weeks, ending with a presentation and a practical demonstration (simulations alone are not enough), see the course schedule in e-learning.
+* The ATmega code must be written in C and/or Assembly and must be implementable on an Arduino Uno board using the toolchains provided by PlatformIO (exceptions by agreement).
 
-* The AVR code must be written in C and/or Assembly and must be implementable on an Arduino Uno board using the toolchains provided by PlatformIO (exceptions by agreement).
-
-* The use of Arduino frameworks/libraries is strictly prohibited!
+* The use of Arduino framework/libraries is strictly prohibited!
 
 * If needed, use the simulation tools, such as [SimulIDE](https://simulide.com/p/), [wokwi](https://wokwi.com/), [Falstad](https://www.falstad.com/circuit/circuitjs.html), etc.
 
-* Draw illustrative flowcharts for all important functions/interrupt routines.
-
-* Design a block diagram or circuit diagram of your application (EasyEDA, KiCAD, Eagle, ...).
-
-* Optionally, design a PCB and/or 3D-printable enclosure for your solution.
-
-* Use libraries from the labs. Create own libraries (and documentation) for the new components.
+* Use libraries from the labs. Create your own libraries (and documentation) for the new components. Strictly follow licenses for third-party libraries!
 
 * Follow coding standards in your codes.
 
-* Strictly follow licenses for third-party libraries !
+---
 
-* Create a public [GitHub](https://github.com/) (or any other online software development platform) repository for your project and publish all files here.
+## Phase 1: Design (Project proposal)
 
-* Provide a list of all tools used during the project, including Machine Learning (some are listed [here](https://github.com/tomas-fryza/avr-course/wiki)).
+### Objective
+Plan, design, and justify your project idea before implementation.
 
-* A PowerPoint-style presentation is not required; a good `README.md` on GitHub is sufficient.
+### Deliverable
+A **public [GitHub](https://github.com/)** repository for your project includes:
 
-* During the presentation, you can play a short video (max 1 minute) with subtitles or explanatory captions.
+1. **Problem statement and solution overview**
+   - Clearly describe the problem being addressed.
+   - Explain how your proposed solution uses MCU to solve it.
 
-# Recommended README.md file structure
+2. **List of hardware components**
+   - Provide a list of sensors, actuators, and other electronic components intended for use.
+   - Include justification for your component choices (why each part is needed).
 
-### Team members
+3. **Software design**
+   - Present system-level **block diagrams**, **flowcharts**, or **pseudocode** showing the planned software logic and control flow.
 
-* Member 1 (responsible for ...)
-* Member 2 (responsible for ...)
-* Member 3 (responsible for ...)
+---
 
-## Hardware description
+## Phase 2: Build (Prototype development)
 
-Describe your implementation and include block or circuit diagram(s).
+### Objective
+Implement and test a working prototype based on your approved proposal.
 
-## Software description
+### Notes
+- Teams may use university laboratories and facilities for hardware assembly.
+- Circuit construction may include passive and active components on a breadboard or custom PCB (if available).
 
-Include flowcharts/state diagrams of your algorithm(s) and direct links to the source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
+### Deliverables
 
-## Instructions and photos
+1. **Prototype demonstration video**
+   - A **maximum 3-minute video** showing the prototype's functionality.
+   - Clearly explain the system's features, operation, and performance.
 
-Describe how to use the application. Add photos or videos of your application.
+2. **Source code submission**
+   - Submit well-documented C code to GitHub.
+   - Highlight key functions, algorithms, and any custom libraries used.
 
-## References and tools
+3. **Technical documentation**
+   - Include **block diagrams**, **circuit schematics**, and **justifications** for major design choices (hardware and software).
 
-1. Put here the references and online tools you used.
-2. ...
+4. **Pitch poster (A3 or larger)**
+   - A visually appealing poster summarizing:
+     - Project concept and motivation
+     - System design and functionality
+     - Value, applications, and potential impact
 
-# Topics 2024/25
+---
 
-### Measurement/Control/Visualization of the environment for tropical plants
+## Phase 3: Demonstration
 
-The goal of the project would be to create a system that measures key environmental parameters (such as temperature, humidity, light levels, soil moisture) for tropical plants. This system should also allow the user to control or adjust environmental conditions and visualize the data.
+### Objective
+Present and defend your project in front of instructors and peers.
 
-Inspiration:
-* [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/climate-chamber-system-c545de)
+### Expectations
+- Teams will **showcase their working prototype** and **poster** during the demonstration session.
+- Each member should be prepared to explain their contribution and answer technical questions about the design, implementation, and testing.
 
-Possible components:
-* Plant terrarium
-* I2C temperature and humidity sensor
-* Photoresistor
-* Soil moisture sensor
-* OLED display
-* RGB LED strip Neopixel WS2812B
-* Relays
-* Brushless DC fan, NMOS transistor
-* ESP8266 Wi-Fi module
+---
 
-### Concept of an autonomous vehicle
+## Topics 2025/26
 
-(*Max 2 teams per lab group.*)
+### 1. Indoor air quality monitoring system
+Measure temperature, humidity, CO2, and particulate matter (PM2.5/PM10) using sensors such as DHTx, MQx, SQP4x, SDS011, etc. Display data on a display or send it to a web dashboard.
 
-The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks.
+### 2. FM radio receiver with digital tuning
+Build an FM receiver using a tuner module (e.g., Si4703). Include a display to show frequency and simple buttons for tuning. Consider an RDS (Radio Data System).
 
-Inspiration:
-* [NXP Cup](https://nxpcup.nxp.com/)
+### 3. Portable environmental data logger with timestamping
+Collect and store environmental data (temperature, pressure, light, motion, etc.) to an SD card or internal memory. Include a real-time clock for timestamping. Export data to computer.
 
-Possible components:
-* [DFRobot chassis](https://nxp.gitbook.io/nxp-cup/2019-dfrobot-chassis-developer-guide/assembly/dfrobot-chassis), including Hobbywing 30A ESCs (Electronic Speed Controllers) and servo motor for steering
-* LiPol battery
-* Proximity sensor HC-SR04
-* Digital [line tracking sensor](https://www.dfrobot.com/product-85.html)
-* I2C accelerometers and gyroscopes
-* OLED display
-* Platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board
+### 4. Wireless cloud-connected sensor node
+Develop wireless sensor nodes that sends the collected data to a cloud platform (e.g., ThingSpeak, Blynk, etc.).
 
-   ![dfrobot chassis](images/nxp_chassis.jpg)
-
-### Solar panel monitoring and optimization
-
-(*Max 2 teams per lab group.*)
-
-The goal of this project is to design and implement an embedded system that monitors and optimizes the performance of solar panels. The system will use a range of sensors to collect real-time data on solar radiation, energy output, and panel efficiency. Data are displayed or logged. The project will involve hardware integration, data collection, and the development of algorithms to monitor panel health and efficiency.
-
-Inspiration:
-* [Simple Arduino Solar Radiation Meter for Solar Panels](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
-* [Photovoltaic battery charger with sun tracking](https://www.vut.cz/en/students/final-thesis/detail/151699)
-
-Possible components:
-* Solar panel(s)
-* Battery charger
-* Photoresistor
-* Current sensor
-* OLED display
-* EEPROM
-* Rotary encoder or buttons or joystick
-* Servo motors
-* ESP8266 Wi-Fi module
-
-### Electronically controlled xylophone
-
-(*Max 1 team per lab group.*)
-
-Build an electronic xylophone instrument that can be played using an AVR microcontroller. The project will combine hardware and software components to create an interactive and programmable musical instrument capable of producing different tones and melodies. Incorporating a graphical user interface (GUI) to visualize the notes being played.
-
-Possible components:
-* Xylophone
-* OLED display
-* Rotary encoder or buttons or joystick
-* EEPROM memory
-
-   ![xylophone photo](images/xylofon.jpg)
-
-   ![xylophone schematic](images/xylophone_board.svg)
-
-### Simulace a implementace FDIR algoritmu pro mikrokontroléry AVR v aerospace aplikacích
-
-Cílem projektu je simulovat na mikrokontrolerech AVR funkcionalitu Fault Detection, Isolation, and Recovery (FDIR) algoritmu / subsystému
-dle vlastního výběru využívaných v aerospace aplikacích.
-Součástí hodnocení bude kvalita zpracování zvoleného simulovaného scénáře.
-
-1. **Výběr FDIR algoritmu**:
-   - Prostudujte různé typy FDIR algoritmů používaných v aerospace průmyslu.
-   - Vyberte jeden algoritmus, který bude implementován a simulován.
-
-2. **Návrh a implementace**:
-   - Navrhněte architekturu systému, který bude využívat mikrokontrolér AVR (např. ATmega328).
-   - Implementujte vybraný FDIR algoritmus v jazyce C nebo C++.
-   - Zajistěte, aby systém byl schopen detekovat, izolovat a obnovit se z chyb.
-   - Je zakázano využívat jakékoliv knihovny Arduino. Je možné využít vlastní implementace anebo řešení z laboratorních cvičení.
-
-3. **Simulace a testování**:
-   - Vytvořte simulaci systému, která bude demonstrovat funkčnost FDIR algoritmu.
-   - Proveďte testování a validaci algoritmu pomocí simulace různých chybových scénářů.
-
-4. **Závěrečná zpráva**:
-   - Vypracujte podrobnou zprávu, která bude obsahovat:
-   - Úvod do problematiky FDIR v aerospace aplikacích.
-   - Popis vybraného FDIR algoritmu a důvody jeho výběru.
-   - Návrh a implementaci systému.
-   - Výsledky simulace a testování.
-   - Diskuzi o výhodách a nevýhodách implementovaného řešení.
-   - Závěry a doporučení pro další vývoj.
-
-Projekt bude hodnocen na základě:
-   - Kvality a funkčnosti implementovaného FDIR algoritmu.
-   - Úrovně simulace a testování.
-   - Kvality a detailnosti závěrečné zprávy.
-   - Spolupráce a rozdělení úkolů v týmu.
-
-Doporučené zdroje:
-1. [An Integrated Process for FDIR Design in Aerospace (FAME)](https://es-static.fbk.eu/people/bozzano/publications/imbsa2014b.pdf)
-
-2. [FDIR Development and Verification and Validation Process (FAME)](https://indico.esa.int/event/85/contributions/3387/attachments/2727/3152/1710-FDIR_7_An_Integrated_Process_for_FDIR_Design_in_Aerospace_FAME_-_ESA-ESTEC.pdf)
-
-3. Kapitola v knize, která se zabývá návrhem a implementací FDIR systémů v aerospace aplikacích. Obsahuje podrobné informace o různých typech FDIR algoritmů a jejich použití. [FDIR in Aerospace Applications](https://link.springer.com/chapter/10.1007/978-3-319-12214-4_7)
-
-### Usage of CubeSat Space Protocol (CSP)
-
-(*Topic provided by [YSpace](https://www.vut.cz/en/yspace) group.*)
-
-Test of multiprocessor communication. The MCU platform will be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
-
-### Another topic related to, for example, your bachelor's thesis
-
-(*Must be arranged in advance.*)
+### (5. Self-selected topic; subject to prior approval)
