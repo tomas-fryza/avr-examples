@@ -78,6 +78,8 @@ Present and defend your project in front of instructors and peers.
 - Teams will **showcase their working prototype** and **poster** during the demonstration session.
 - Each member should be prepared to explain their contribution and answer technical questions about the design, implementation, and testing.
 
+   ![chatgpt](images/chatgpt-vs-developers.png)
+
 ---
 
 ## Topics 2025/26
