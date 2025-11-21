@@ -48,8 +48,7 @@ int main(void)
     sei();
 
     // Infinite empty loop
-    while (1)
-    {
+    while (1) {
     }
 
     // Will never reach this

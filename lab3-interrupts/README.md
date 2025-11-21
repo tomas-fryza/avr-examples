@@ -85,11 +85,11 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local folder.
 
-3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+3. Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 4. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files `gpio.c` and `gpio.h` from the previous lab to this folder.
 
-5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/refs/heads/master/library/timer/timer.h) to `timer.h`. See the final project structure:
+5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
@@ -107,32 +107,37 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
    To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
-6. Copy/paste the following template to `LAB3-TIMERS > src > main.c` source file and complete the code to blink the on-board LED every 262 ms using Timer1 overflow interrupt.
+6. Copy/paste the following files:
 
-   ```c
-   // -- Includes -----------------------------------------------
-   #include <avr/io.h>         // AVR device-specific IO definitions
-   #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
-   #include <gpio.h>           // GPIO library for AVR-GCC
-   #include "timer.h"          // Timer library for AVR-GCC
+   * [`timer.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/refs/heads/master/library/timer/timer.h) 
+   * `main.c`:
 
-   int main(void)
-   {
-       ...
-       // Enable overflow interrupt
-       tim1_ovf_enable();
-       ...
-       // Enables interrupts by setting the global interrupt mask
-       sei();
-       ...
-   }
+      ```c
+      // -- Includes -----------------------------------------------
+      #include <avr/io.h>         // AVR device-specific IO definitions
+      #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
+      #include <gpio.h>           // GPIO library for AVR-GCC
+      #include "timer.h"          // Timer library for AVR-GCC
 
-   // Interrupt service routines
-   ISR(TIMER1_OVF_vect)
-   {
-       ...
-   }
-   ```
+      int main(void)
+      {
+          ...
+          // Enable overflow interrupt
+          tim1_ovf_enable();
+          ...
+          // Enables interrupts by setting the global interrupt mask
+          sei();
+          ...
+      }
+
+      // Interrupt service routines
+      ISR(TIMER1_OVF_vect)
+      {
+          ...
+      }
+      ```
+
+   Complete the code to blink the on-board LED every 262 ms using Timer1 overflow interrupt.
 
 7. In `timer.h` header file, define similar macros also for Timer/Counter0.
 
@@ -154,8 +159,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
        static uint8_t n_ovfs = 0;
 
        n_ovfs++;
-       if (n_ovfs >= 6)
-       {
+       if (n_ovfs >= 6) {
            // Do this every 6 x 16 ms = 100 ms
            n_ovfs = 0;
            ...
@@ -175,8 +179,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
        TCNT0 = 128;
 
        n_ovfs++;
-       if (n_ovfs >= 6)
-       {
+       if (n_ovfs >= 6) {
            n_ovfs = 0;
            ...
        }
