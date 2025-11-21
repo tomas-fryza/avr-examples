@@ -251,9 +251,13 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
 
 2. A flowchart is a visual representation of a certain process or flow of instructions of an algorithm that helps to understand it. A flowchart basically uses rectangles, diamonds, ovals and various other shapes to make the problem easier to understand.
 
-   ![basic flow charts](images/flowcharts.png)
+   ![flowchart_shapes](images/flowchart_shapes.jpg)
 
-3. Complete the stopwatch flowchart of the Timer/Counter2 interrupt service routine with seconds. According to the flowchart, program the `ISR()` source code. Let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again.
+   According to the following flowchart, complete the code.
+
+   ![stopwatch_tenths](images/flowchart.drawio.png)
+
+3. Extend the code by seconds and let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again.
 
    ![LCD screenshot](images/screenshot_lcd_seconds.png)
 
