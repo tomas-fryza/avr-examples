@@ -56,13 +56,11 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
 1. In Visual Studio Code create a new PlatformIO project `lab7-asm` for `Arduino Uno` board and change project location to your local folder.
 
-2. IMPORTANT: Rename `LAB7-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+2. Rename `LAB7-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab7-asm/main.c) to `LAB7-ASM > src > main.c` source file.
+3. Copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB7-ASM` project.
 
-4. Copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB7-ASM` project.
-
-5. In PlatformIO project, create a new folder `LAB7-ASM > lib > lfsr`. Within this folder, create two new files `lfsr.h` and `lfsr.S`. The final project structure should look like this:
+4. In PlatformIO project, create a new folder `LAB7-ASM > lib > lfsr`. Within this folder, create two new files `lfsr.h` and `lfsr.S`. The final project structure should look like this:
 
    ```c
    LAB7-ASM            // PlatfomIO project
@@ -81,8 +79,11 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste assembly [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lfsr/lfsr.h) to `lfsr.h`
-   2. Copy/paste assembly [source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lfsr/lfsr.S) to `lfsr.S`
+5. Copy/paste the following files:
+
+   * [`main.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab7-asm/main.c)4
+   * [`lfsr.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lfsr/lfsr.h)
+   * [`lfsr.S`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lfsr/lfsr.S)
 
 6. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/) and find the description of following instructions.
 

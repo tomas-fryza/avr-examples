@@ -111,7 +111,7 @@ The goal of this task is to create a program that will verify the presence of de
 
 2. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local folder.
 
-   1. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+   1. Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
    2. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-I2C` project.
 
@@ -136,9 +136,9 @@ The goal of this task is to create a program that will verify the presence of de
 
    4. Copy/paste the following files:
    
-      * [main.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab6-i2c/main.c)
-      * [twi.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.c)
-      * [twi.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.h)
+      * [`main.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab6-i2c/main.c)
+      * [`twi.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.c)
+      * [`twi.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/twi/twi.h)
 
 3. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the `twi.h` header file and complete the following table by input parameters and functions descriptions.
 
@@ -179,7 +179,7 @@ The goal of this task is to communicate with the RTC assigned to the I2C slave a
 
 
    // -- Global variables -------------------------------------
-   volatile uint8_t flag_update_uart = 0;
+   volatile uint8_t flag = 0;
    volatile uint8_t rtc_values[3];
 
 
@@ -201,13 +201,13 @@ The goal of this task is to communicate with the RTC assigned to the I2C slave a
 
        ...
        while (1) {
-           if (flag_update_uart == 1) {
+           if (flag == 1) {
                // Display time from RTC
                sprintf(uart_msg, "%x  \r", rtc_values[0]);
                uart_puts(uart_msg);
 
                // Do not print it again and wait for the new data
-               flag_update_uart = 0;
+               flag = 0;
            }
        }
 
@@ -223,7 +223,7 @@ The goal of this task is to communicate with the RTC assigned to the I2C slave a
    ISR(TIMER1_OVF_vect)
    {
        twi_readfrom_mem_into(RTC_ADR, 0, rtc_values, 1);
-       flag_update_uart = 1;
+       flag = 1;
    }
    ```
 

@@ -116,7 +116,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 2. In Visual Studio Code create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local folder.
 
-3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+3. Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 4. Copy the `timer.h` header file from the previous lab to `LCD4-LCD > include` folder.
 
@@ -142,11 +142,12 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd_definitions.h) to `lcd_definitions.h`
-   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd.c) to `lcd.c`
-   3. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd.h) to `lcd.h`
+7. Copy/paste the following files:
 
-7. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab4-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
+   * [`main.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab4-lcd/main.c)
+   * [`lcd_definitions.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd_definitions.h)
+   * [`lcd.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd.c)
+   * [`lcd.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/lcd/lcd.h)
 
 8. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 
@@ -198,7 +199,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
 
 ## Part 4: Stopwatch
 
-1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again. Update LCD values within the forever loop in `main` function when global flag variable `update_lcd` is equal to `1`.
+1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again. Update LCD values within the forever loop in `main` function when global `flag` variable is equal to `1`.
 
    ![LCD screenshot](images/screenshot_lcd_tenths.png)
 
@@ -210,12 +211,11 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    ...
 
    // -- Global variables -------------------------------------
-   volatile uint8_t flag_update_lcd = 0;
+   volatile uint8_t flag = 0;
 
    // Stopwatch values
    // Declaration of "stopwatch" variable with structure "Stopwatch_structure"
-   struct Stopwatch_structure
-   {
+   struct Stopwatch_structure {
        uint8_t tenths;  // Tenths of a second
        uint8_t secs;    // Seconds
        uint8_t mins;    // Minutes
@@ -228,16 +228,14 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
        ...
 
        // Infinite loop
-       while (1)
-       {
-           if (flag_update_lcd == 1)
-           {
+       while (1) {
+           if (flag == 1) {
                // Display "00:00.tenths"
                itoa(stopwatch.tenths, lcd_msg, 10);  // Convert decimal value to string
                lcd_gotoxy(7, 0);
                lcd_puts(lcd_msg);
 
-               flag_update_lcd = 0;
+               flag = 0;
            }
        }
        ...
@@ -247,7 +245,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    ISR(TIMER2_OVF_vect)
    {
        ...
-       flag_update_lcd = 1;
+       flag = 1;
    }
    ```
 

@@ -95,9 +95,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    4. Copy/paste the following files:
    
-      * [main.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab5-uart/main.c)
-      * [uart.c](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.c)
-      * [uart.h](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.h)
+      * [`main.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/lab5-uart/main.c)
+      * [`uart.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.c)
+      * [`uart.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/uart/uart.h)
 
 3. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`? Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
 
@@ -147,12 +147,10 @@ In this part, you will establish communication between a PC and an Arduino board
        char uart_msg[8];
 
        ...
-       while (1)
-       {
+       while (1) {
            // Get received data from UART
            value = uart_getc();
-           if ((value & 0xff00) == 0)  // If successfully received data from UART
-           {
+           if ((value & 0xff00) == 0) {  // If successfully received data from UART
                // Transmit the received character back via UART
                uart_putc(value);
 
@@ -218,18 +216,14 @@ In this part, you will establish communication between a PC and an Arduino board
 4. Enhance the code from the previous task and read the contents of the Timer 1 data register and send it via UART to the computer when the key code `1` is received. In all other cases, the functionality of the code will remain the same as in the previous example.
 
    ```c
-   while (1)
-   {
+   while (1) {
        // Get received data from UART
        value = uart_getc();
-       if ((value & 0xff00) == 0)  // If successfully received data from UART
-       {
-           if (value == '1')
-           {
+       if ((value & 0xff00) == 0) {  // If successfully received data from UART
+           if (value == '1') {
                ...
            }
-           else
-           {
+           else {
                // Transmit the received character back via UART
                uart_putc(value);
 

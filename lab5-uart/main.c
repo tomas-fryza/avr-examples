@@ -38,8 +38,7 @@ int main(void)
     uart_puts("Start using Serial monitor...\r\n");
 
     // Infinite loop
-    while (1)
-    {
+    while (1) {
     }
 
     // Will never reach this

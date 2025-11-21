@@ -182,13 +182,17 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste the [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/gpio/gpio.c) to `gpio.c`
-   2. Copy/paste the [header file](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/gpio/gpio.h) to `gpio.h`
-   3. Include header file to `src > main.c`:
+2. Copy/paste the following files:
+
+   * [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/gpio/gpio.c)
+   * [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-labs/master/library/gpio/gpio.h)
+
+
+3. Include header file to `src > main.c`:
 
       ```c
       // -- Includes ---------------------------------------------
-      #include <gpio.h>       // GPIO library for AVR-GCC
+      #include <gpio.h>  // GPIO library for AVR-GCC
       ...
 
       int main(void)
@@ -197,7 +201,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
       }
       ```
 
-2. Go through both files and make sure you understand each line. The GPIO library defines the following functions.
+4. Go through both files and make sure you understand each line. The GPIO library defines the following functions.
 
    | **Return** | **Function name** | **Function parameters** | **Description** |
    | :-: | :-- | :-- | :-- |
@@ -232,11 +236,11 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    >
    > **Note:** Understanding C Pointers: A Beginner's Guide is available [here](https://www.codewithc.com/understanding-c-pointers-beginners-guide/). Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
 
-3. In `main.c` comment bitwise operations with control registers (DDRB, PORTB) and rewrite the application with library functions.
+5. In `main.c` comment bitwise operations with control registers (DDRB, PORTB) and rewrite the application with library functions.
 
-4. On a breadboard, connect a LED or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistor(s) to pin(s) PB0 (and PB1). Develop the code to achieve alternating blinking of two LEDs.
+6. On a breadboard, connect a LED or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistor(s) to pin(s) PB0 (and PB1). Develop the code to achieve alternating blinking of two LEDs.
 
-5. On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
+7. On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
    ![schema of active-low push button](images/schema_button_active-low.png)
 
