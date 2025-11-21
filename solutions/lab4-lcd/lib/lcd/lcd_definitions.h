@@ -1,13 +1,13 @@
 #ifndef LCD_DEFINITIONS_H
-# define LCD_DEFINITIONS_H
+#define LCD_DEFINITIONS_H
 
 /* 
  * Adjusting the display settings. All definitions added to the file 
  * "lcd_definitions.h" will override the default definitions from 
  * "lcd.h" (see Peter Fleury's LCD library for HD44780 based LCDs).
- * (c) 2019-2024 Peter Fleury, Tomas Fryza, Peter Fleury
+ * (c) 2019-2025 Peter Fleury, Tomas Fryza, Peter Fleury
  * 
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
@@ -23,12 +23,12 @@
  * for HD44780 based LCDs).
  *
  * @author Tomas Fryza, Peter Fleury
- * @copyright (c) 2019-2024 Tomas Fryza, MIT license
+ * @copyright (c) 2019-2025 Tomas Fryza, MIT license
  * @{
  */
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 /**
  * @name  Definitions for Display Size
  * Number of visible lines and characters per line of the display.

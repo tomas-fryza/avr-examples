@@ -1,12 +1,12 @@
 /*
  * Use USART unit and transmit data between ATmega328P and computer.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -14,7 +14,7 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Use Timer/Counter1 and transmit UART data.
@@ -43,30 +43,25 @@ int main(void)
     uart_puts("  other: ASCII code\r\n");
 
     // Infinite loop
-    while (1)
-    {
+    while (1) {
         // Get received data from UART
         value = uart_getc();
-        if ((value & 0xff00) == 0)  // If successfully received data from UART
-        {
-            if (value == '1')
-            {
+        if ((value & 0xff00) == 0) {  // If successfully received data from UART
+            if (value == '1') {
                 value = TCNT1;
                 itoa(value, string, 16);
                 uart_puts("Timer1: 0x");
                 uart_puts(string);
                 uart_puts("\r\n");
             }
-            else if (value == '0')
-            {
+            else if (value == '0') {
                 value = TCNT0;
                 itoa(value, string, 16);
                 uart_puts("Timer0: 0x");
                 uart_puts(string);
                 uart_puts("\r\n");
             }
-            else
-            {
+            else {
                 // Transmit the received character back via UART
                 uart_putc(value);
 
@@ -96,7 +91,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Transmit UART data.
@@ -106,7 +101,6 @@ ISR(TIMER1_OVF_vect)
     // WRITE YOUR CODE HERE
     uart_puts("Paris\t");
 }
-
 
 
 /*

@@ -25,8 +25,8 @@ int main(void)
     // Copy buffer to display RAM
     oled_display();
 
-    while (1)
-    {
+    while (1) {
+        // Infinite loop
     }
 
     return 0;

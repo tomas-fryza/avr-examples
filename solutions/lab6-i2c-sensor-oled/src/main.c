@@ -1,13 +1,13 @@
 /* 
  * Read values from I2C (TWI) temperature/humidity sensor and send
  * them to OLED screen.
- * (c) 2023-2024 Tomas Fryza, MIT license
+ * (c) 2023-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -16,18 +16,18 @@
 #include <stdio.h>          // C library for `sprintf`
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 #define DHT_ADR 0x5c
 #define DHT_HUM_MEM 0
 #define DHT_TEMP_MEM 2
 
 
-// -- Global variables -----------------------------------------------
-volatile uint8_t flag_update_oled = 0;
+// -- Global variables -------------------------------------
+volatile uint8_t flag = 0;
 volatile uint8_t dht12_values[5];
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 void oled_setup(void)
 {
     oled_init(OLED_DISP_ON);
@@ -80,10 +80,8 @@ int main(void)
     sei();
 
     // Infinite loop
-    while (1)
-    {
-        if (flag_update_oled == 1)
-        {
+    while (1) {
+        if (flag == 1) {
             // Clear previous temperature value on OLED
             oled_gotoxy(17, 6);
             oled_puts("    ");
@@ -105,7 +103,7 @@ int main(void)
             oled_display();
 
             // Do not print it again and wait for the new data
-            flag_update_oled = 0;
+            flag = 0;
         }
     }
 
@@ -114,7 +112,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Read temperature and humidity from DHT12, SLA = 0x5c.
@@ -125,10 +123,9 @@ ISR(TIMER1_OVF_vect)
 
     n_ovfs++;
     // Read the data every 5 secs
-    if (n_ovfs >= 5)
-    {
+    if (n_ovfs >= 5) {
         n_ovfs = 0;
         twi_readfrom_mem_into(DHT_ADR, DHT_HUM_MEM, dht12_values, 5);
-        flag_update_oled = 1;
+        flag = 1;
     }
 }

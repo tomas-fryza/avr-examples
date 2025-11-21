@@ -1,16 +1,16 @@
 /*
  * I2C/TWI library for AVR-GCC.
- * (c) 2018-2024 Tomas Fryza, MIT license
+ * (c) 2018-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <twi.h>
 
 
-// -- Functions ------------------------------------------------------
+// -- Functions --------------------------------------------
 /*
  * Function: twi_init()
  * Purpose:  Initialize TWI unit, enable internal pull-ups, and set SCL
@@ -132,8 +132,7 @@ uint8_t twi_test_address(uint8_t addr)
 void twi_readfrom_mem_into(uint8_t addr, uint8_t memaddr, volatile uint8_t *buf, uint8_t nbytes)
 {
     twi_start();
-    if (twi_write((addr<<1) | TWI_WRITE) == 0)
-    {
+    if (twi_write((addr<<1) | TWI_WRITE) == 0) {
         // Set starting address
         twi_write(memaddr);
         twi_stop();
@@ -141,18 +140,15 @@ void twi_readfrom_mem_into(uint8_t addr, uint8_t memaddr, volatile uint8_t *buf,
         // Read data into the buffer
         twi_start();
         twi_write((addr<<1) | TWI_READ);
-        if (nbytes >= 2)
-        {
-            for (uint8_t i=0; i<(nbytes-1); i++)
-            {
+        if (nbytes >= 2) {
+            for (uint8_t i=0; i<(nbytes-1); i++) {
                 *buf++ = twi_read(TWI_ACK);
             }
         }
         *buf = twi_read(TWI_NACK);
         twi_stop();
     }
-    else
-    {
+    else {
         twi_stop();
     }
 }

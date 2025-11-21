@@ -1,9 +1,9 @@
 ;
 ; Assembly implementation of 4- and 8-bit pseudo-random generators based
 ; on LFSR (Linear Feedback Shift Register) with Fibonacci architecture.
-; (c) 2017-2024 Tomas Fryza, MIT license
+; (c) 2017-2025 Tomas Fryza, MIT license
 ;
-; Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+; Developed using PlatformIO and Atmel AVR platform.
 ; Tested on Arduino Uno board and ATmega328P, 16 MHz.
 ;
 ; Inspired by:
@@ -13,13 +13,13 @@
 ;   - https://courses.cs.washington.edu/courses/cse369/15au/labs/xapp052_LFSRs.pdf
 ;
 
-; -- Includes --------------------------------------------------------
+; -- Includes ----------------------------------------------
 ; Set offset for control register addresses (NEEDED FOR I/O REGISTERS)
 #define __SFR_OFFSET    0
 #include <avr/io.h>
 
 
-; -- Defines ---------------------------------------------------------
+; -- Defines -----------------------------------------------
 #define in_out_reg r24
 #define temp0      r26
 #define temp1      r27
@@ -28,7 +28,7 @@
 
 
 
-; -- Function definitions --------------------------------------------
+; -- Function definitions ----------------------------------
 ;
 ; Function: multiply_accumulate_asm
 ; Purpose:  Multiply-and-Accumulate operation: in_out_reg = in_out_reg + (a*b).

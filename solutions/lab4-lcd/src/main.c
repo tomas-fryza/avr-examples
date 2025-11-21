@@ -2,7 +2,7 @@
  * Stopwatch on Liquid Crystal Display (LCD).
  * (c) 2017-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
@@ -16,12 +16,11 @@
 
 
 // -- Global variables -------------------------------------
-volatile uint8_t flag_update_lcd = 0;
+volatile uint8_t flag = 0;
 
 // Stopwatch values
 // Declaration of "stopwatch" variable with structure "Stopwatch_structure"
-struct Stopwatch_structure
-{
+struct Stopwatch_structure {
     uint8_t tenths;  // Tenths of a second
     uint8_t secs;    // Seconds
     uint8_t mins;    // Minutes
@@ -58,6 +57,7 @@ void lcd_setup(void)
     lcd_putc(3);
 }
 
+
 void timer2_init(void)
 {
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
@@ -83,10 +83,8 @@ int main(void)
     sei();
 
     // Infinite loop
-    while (1)
-    {
-        if (flag_update_lcd == 1)
-        {
+    while (1) {
+        if (flag == 1) {
             // Display "00:00.tenths"
             itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
             lcd_gotoxy(7, 0);
@@ -98,7 +96,7 @@ int main(void)
                 lcd_puts("0");
             lcd_puts(string);
 
-            flag_update_lcd = 0;
+            flag = 0;
         }
     }
 
@@ -120,22 +118,19 @@ ISR(TIMER2_OVF_vect)
     n_ovfs++;
 
     // Do this every 6 x 16 ms = 100 ms
-    if (n_ovfs >= 6)
-    {
+    if (n_ovfs >= 6) {
         n_ovfs = 0;
         stopwatch.tenths++;
         // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
-        if (stopwatch.tenths > 9)
-        {
+        if (stopwatch.tenths > 9) {
             stopwatch.tenths = 0;
             // Seconds
             stopwatch.secs++;
-            if (stopwatch.secs > 59)
-            {
+            if (stopwatch.secs > 59) {
                 stopwatch.secs = 0;
             }
         }
-        flag_update_lcd = 1;
+        flag = 1;
     }
     // Else do nothing and exit the ISR
 }

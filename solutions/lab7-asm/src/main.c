@@ -1,11 +1,11 @@
 /*
  * Implementation of LFSR-based (Linear Feedback Shift Register) 
  * pseudo-random generator in AVR assembly.
- * (c) 2017-2024 Tomas Fryza, MIT license
+ * (c) 2017-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
- * 
+ *
  * NOTE:
  *   To see assembly listing, run the following command in Terminal
  *   after the compilation.
@@ -28,10 +28,10 @@
  * Electronics 2 at Brno University of Technology, Czechia.
  * 
  * @author Tomas Fryza, Peter Fleury
- * @copyright (c) 2017-2024 Tomas Fryza, MIT license
+ * @copyright (c) 2017-2025 Tomas Fryza, MIT license
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -40,11 +40,11 @@
 #include <lfsr.h>
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 #define LFSR_SEED 7  // Starting value of the shift register
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 void timer1_init(void)
 {
     tim1_ovf_33ms();
@@ -66,9 +66,8 @@ int main(void)
 
     sei();
 
-    // Infinite empty loop
-    while (1)
-    {
+    while (1) {
+        // Infinite empty loop
     }
 
     // Will never reach this
@@ -76,7 +75,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Generate one pseudo-random value using 4- and/or 8-bit
@@ -104,8 +103,7 @@ ISR(TIMER1_OVF_vect)
     // value = lfsr4_fibonacci_asm(value);
     value = lfsr4_fibonacci_asm(value);
     n_vals++;
-    if (value == 0)
-    {
+    if (value == 0) {
         // NOTE: Add `monitor_raw = 1` to `platformio.ini`
         sprintf(uart_msg, "\r\n\x1b[32;1mLength = %d\x1b[0m\r\n", n_vals);
         uart_puts(uart_msg);

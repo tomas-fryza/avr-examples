@@ -1,13 +1,13 @@
 /* 
  * Read values from I2C (TWI) temperature/humidity sensor and send
  * them to UART.
- * (c) 2017-2024 Tomas Fryza, MIT license
+ * (c) 2017-2025 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO and Atmel AVR platform.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
-// -- Includes -------------------------------------------------------
+// -- Includes ---------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -16,7 +16,7 @@
 #include <stdio.h>          // C library for `sprintf`
 
 
-// -- Defines --------------------------------------------------------
+// -- Defines ----------------------------------------------
 #define DHT_ADR 0x5c
 #define DHT_HUM_MEM 0
 #define DHT_TEMP_MEM 2
@@ -25,12 +25,12 @@
 #define RTC_SEC_MEM 0
 
 
-// -- Global variables -----------------------------------------------
-volatile uint8_t flag_update_uart = 0;
+// -- Global variables -------------------------------------
+volatile uint8_t flag = 0;
 volatile uint8_t dht12_values[5];
 
 
-// -- Function definitions -------------------------------------------
+// -- Function definitions ---------------------------------
 void timer1_init(void)
 {
     tim1_ovf_1sec();
@@ -53,18 +53,15 @@ int main(void)
     sei();  // Needed for UART
 
     // Test if sensor is ready
-    if (twi_test_address(DHT_ADR) != 0)
-    {
+    if (twi_test_address(DHT_ADR) != 0) {
         uart_puts("[\x1b[31;1mERROR\x1b[0m] I2C device not detected\r\n");
         while (1);
     }
 
     timer1_init();
 
-    while (1)
-    {
-        if (flag_update_uart == 1)
-        {
+    while (1) {
+        if (flag == 1) {
             // Display temperature
             sprintf(uart_msg, "%u.%u °C\t\t", dht12_values[2], dht12_values[3]);
             uart_puts(uart_msg);
@@ -78,7 +75,7 @@ int main(void)
             uart_puts(uart_msg);
 
             // Do not print it again and wait for the new data
-            flag_update_uart = 0;
+            flag = 0;
         }
     }
 
@@ -87,7 +84,7 @@ int main(void)
 }
 
 
-// -- Interrupt service routines -------------------------------------
+// -- Interrupt service routines ---------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Read data from DHT12 sensor, SLA = 0x5c.
@@ -98,14 +95,12 @@ ISR(TIMER1_OVF_vect)
 
     n_ovfs++;
     // Read the data every 5 secs
-    if (n_ovfs >= 5)
-    {
+    if (n_ovfs >= 5) {
         n_ovfs = 0;
         twi_readfrom_mem_into(DHT_ADR, DHT_HUM_MEM, dht12_values, 5);
-        flag_update_uart = 1;
+        flag = 1;
     }
 }
-
 
 
 /*
@@ -127,7 +122,6 @@ ISR(TIMER1_OVF_vect)
         uart_puts("\t");
     }
 */
-
 
 
 /*
