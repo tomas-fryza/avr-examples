@@ -12,7 +12,7 @@ RMFILES = $(OBJS) $(EXEC) *.s *.i
 
 ## Default target
 # target: prerequisites
-#	recipe
+#     recipe
 all: $(EXEC)
 
 ## Generic compilation rules
@@ -23,21 +23,18 @@ all: $(EXEC)
 # https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html#Automatic-Variables
 # Link the object files to create the executable
 $(EXEC): $(OBJS)
-	@printf "Linking \t$^ --> $@... "
-	@$(CC) $(OBJS) -o $(EXEC)
-	@printf "\x1b[32;1mDone\x1b[0m\n"
+	@printf "Linking: $^ --> $@\n\t"
+	$(CC) $(OBJS) -o $(EXEC)
 
 ## Compile main.c into main.o
 main.o: main.c utils.h
-	@printf "Compiling \t$^ --> $@... "
-	@$(CC) $(CFLAGS) -c main.c
-	@printf "\x1b[32;1mDone\x1b[0m\n"
+	@printf "Compiling: $^ --> $@\n\t"
+	$(CC) $(CFLAGS) -c main.c
 
 ## Compile utils.c into utils.o
 utils.o: utils.c utils.h
-	@printf "Compiling \t$^ --> $@... "
-	@$(CC) $(CFLAGS) -c utils.c
-	@printf "\x1b[32;1mDone\x1b[0m\n"
+	@printf "Compiling: $^ --> $@\n\t"
+	$(CC) $(CFLAGS) -c utils.c
 
 ## Preprocess source files *.c to *.i
 preprocess: $(SRCS)
@@ -55,7 +52,7 @@ assembly: $(SRCS)
 ## Clean up generated files
 clean:
 	@printf "Cleaning project files... "
-	@rm -f $(RMFILES)
+	rm -f $(RMFILES)
 	@printf "\x1b[32;1mDone\x1b[0m\n"
 
 version:

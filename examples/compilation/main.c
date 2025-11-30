@@ -1,17 +1,15 @@
-#include <stdio.h>
-#include "utils.h"
+#include <stdio.h>  // Added
+#include "utils.h"  // Added
 
-#define N 30
+#define N 20
 
 int main()
 {
-    int result = square(N);
-    printf("square: \%d\n", result);
+    unsigned int result = square(N);
+    printf("Square of %d is %u\n", N, result);
 
-    for (int i = 0; i < N; i++) {
-        result = add(i*N, 50);
-        printf("addition: \%d\n", result);
-    }
+    printf("Fibonacci sequence (%d):\n", N);
+    fibonacci(N);
 
     return 0;
 }
