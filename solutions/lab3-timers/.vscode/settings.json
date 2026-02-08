@@ -1,9 +1,0 @@
-{
-    "idf.flashType": "UART",
-    "files.associations": {
-        "interrupt.h": "c",
-        "io.h": "c",
-        "iom328p.h": "c",
-        "float.h": "c"
-    }
-}

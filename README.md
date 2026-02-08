@@ -1,16 +1,26 @@
 # AVR course
 
+* [Labs](#labs)
 * [Installation](#installation)
 * [Usage](#usage)
 * [VS Code shortcuts](#vs-code-shortcuts)
-* [Labs](#labs)
-* [List of examples](#list-of-examples)
 * [Components and tools](#components-and-tools)
 * [Links](#links)
 
-The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/268611) at Brno University of Technology, Czechia. The course focuses on digital circuits, microprocessor technology, embedded systems and uses the C and ASM languages for programming 8-bit Arduino microcontrollers in PlatformIO and Visual Studio Code IDE.
+The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/290533) at Brno University of Technology, Czechia. The course focuses on digital circuits, microprocessor technology, embedded systems and uses the C and ASM languages for programming 8-bit Arduino microcontrollers in PlatformIO and Visual Studio Code IDE.
 
-![avr_course](archive/images/arduino_uno_i2c.jpg)
+## Labs
+
+1. [Programming in C](lab1-c)
+2. [Control of GPIO pins](lab2-gpio)
+3. [Timers](lab3-interrupts)
+4. [Liquid Crystal Display (LCD)](lab4-lcd)
+5. [Universal Asynchronous Receiver-Transmitter (UART)](lab5-uart)
+6. [Inter-Integrated Circuits (I2C)](lab6-i2c)
+7. [Assembly language and project documentation](lab7-asm)
+8. [Project](lab8-project)
+
+![avr_course](examples/_archive/images/arduino_uno_i2c.jpg)
 
 ## Installation
 
@@ -20,13 +30,13 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 2. Run Visual Studio Code, open up the extensions viewer in menu **View > Extensions Ctrl+shift+X**, and then typing `PlatformIO` into the search bar. Press **Install** button on the result `PlatformIO IDE`.
 
-   ![Install PlatformIO IDE](archive/images/platformio_install.png)
+   ![Install PlatformIO IDE](examples/_archive/images/platformio_install.png)
 
    It may take a few minutes depending on your connection speed. Do not close any window and do not open other folders until the installing process is completed. After that, restart the Visual Studio Code.
 
 3. *Install Arduino framework:* Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Platforms > Embedded**. Type `AVR` as a platform's filter and select **Atmel AVR**. Click on the **Install** button.
 
-   ![Install Arduino framework](archive/images/platformio_atmel.png)
+   ![Install Arduino framework](examples/_archive/images/platformio_atmel.png)
 
 ## Usage
 
@@ -38,7 +48,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 3. *Compile and upload the code:* The handy shortcuts for building and uploading the code is available on the blue footer taskbar. Hover over the icon to get its functionality. First, compile (**Build**) the project and then **Upload** it to Arduino Uno board. You can **Clean** up generated files as well.
 
-   ![Control icons](archive/images/platformio_navigation.png)
+   ![Control icons](examples/_archive/images/platformio_navigation.png)
 
    *Command Palette:* All available commands in VS Code are also accessible by `F1` or `Ctrl+Shift+P` shortcut and followed by a command. Most useful commands in this course are:
 
@@ -63,25 +73,6 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 | `Ctrl+Shift+V` | Open Markdown preview
 | `Ctrl+K V` | Open Markdown preview to the side
 | `Ctrl+B` | Toggle Sidebar visibility
-
-## Labs
-
-1. [Programming in C](lab1-c)
-2. [Control of GPIO pins](lab2-gpio)
-3. [Timers](lab3-interrupts)
-4. [Liquid Crystal Display (LCD)](lab4-lcd)
-5. [Universal Asynchronous Receiver-Transmitter (UART)](lab5-uart)
-6. [Inter-Integrated Circuits (I2C)](lab6-i2c)
-7. [Assembly language and project documentation](lab7-asm)
-8. [Project](lab8-project)
-
-## List of examples
-
-* [Basic C template, blink a LED](examples/blink)
-* [7-segment display](examples/segment)
-* [ADC](examples/adc)
-* [Project documentation with Doxygen](examples/doxygen)
-* [Autonomous slot car](examples/slot-car)
 
 <a name="components"></a>
 
