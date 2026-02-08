@@ -1,4 +1,4 @@
-# AVR course
+# AVR Examples
 
 * [Labs](#labs)
 * [Installation](#installation)
